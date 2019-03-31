@@ -24,7 +24,7 @@ import java.util.Map;
 @Slf4j
 @Validated
 @RestController
-@RequestMapping("/newspaper-office")
+@RequestMapping("/newspaperOffice")
 public class FxNewspaperOfficeController extends BaseController {
 
     private String message;
@@ -33,14 +33,14 @@ public class FxNewspaperOfficeController extends BaseController {
     private IFxNewspaperOfficeService fxNewspaperOfficeService;
 
     @GetMapping
-    //@RequiresPermissions("dict:view")
+    @RequiresPermissions("newspaperOffice:view")
     public Map<String, Object> list(QueryRequest request, FxNewspaperOffice model) {
         return getDataTable(this.fxNewspaperOfficeService.findPage(request,model));
     }
 
     @Log("新增报刊")
     @PostMapping
-    @RequiresPermissions("newspaper-office:add")
+    @RequiresPermissions("newspaperOffice:add")
     public void addFxNewspaperOffice(@Valid FxNewspaperOffice model) throws FebsException {
         try {
             this.fxNewspaperOfficeService.save(model);
@@ -53,7 +53,7 @@ public class FxNewspaperOfficeController extends BaseController {
 
     @Log("删除报刊")
     @DeleteMapping("/{modelIds}")
-    @RequiresPermissions("newspaper-office:delete")
+    @RequiresPermissions("newspaperOffice:delete")
     public void deleteFxNewspaperOffices(@NotBlank(message = "{required}") @PathVariable String modelIds) throws FebsException {
         try {
             String[] ids = modelIds.split(StringPool.COMMA);
@@ -67,7 +67,7 @@ public class FxNewspaperOfficeController extends BaseController {
 
     @Log("修改报刊")
     @PutMapping
-    @RequiresPermissions("newspaper-office:update")
+    @RequiresPermissions("newspaperOffice:update")
     public void updateFxNewspaperOffice(@Valid FxNewspaperOffice model) throws FebsException {
         try {
             this.fxNewspaperOfficeService.updateById(model);
@@ -79,7 +79,7 @@ public class FxNewspaperOfficeController extends BaseController {
     }
 
   /*  @PostMapping("excel")
-    @RequiresPermissions("newspaper-office:export")
+    @RequiresPermissions("newspaperOffice:export")
     public void export(FxNewspaperOffice model, QueryRequest request, HttpServletResponse response) throws FebsException {
         try {
             List<FxNewspaperOffice> models = this.fxNewspaperOfficeService.findFxNewspaperOffices(model, request);
