@@ -6,6 +6,7 @@ import ${package.Service}.${table.serviceName};
 import ${superServiceImplClassPackage};
 import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -32,7 +33,7 @@ public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.m
 
     public IPage<${entity}> findPage(QueryRequest request, ${entity} model){
       try {
-            QueryWrapper<${entity}> queryWrapper = new QueryWrapper<>();
+            LambdaQueryWrapper<${entity}> queryWrapper = new LambdaQueryWrapper<>();
 
             Page<${entity}> page = new Page<>(request.getPageNum(), request.getPageSize());
             return this.page(page,queryWrapper);
