@@ -31,7 +31,6 @@ public class FxNewspaperOfficeServiceImpl extends ServiceImpl<FxNewspaperOfficeM
         try {
             QueryWrapper<FxNewspaperOffice> queryWrapper = new QueryWrapper<>();
 
-            //queryWrapper.eq(FxNewspaperOffice::getIsValid,model.getIsValid());
             queryWrapper.eq("is_valid",1);
             Page<FxNewspaperOffice> page = new Page<>(request.getPageNum(), request.getPageSize());
             return this.page(page,queryWrapper);
