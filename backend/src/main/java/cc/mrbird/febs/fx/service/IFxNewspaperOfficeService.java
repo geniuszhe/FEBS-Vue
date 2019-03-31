@@ -11,4 +11,6 @@ public interface IFxNewspaperOfficeService extends IService<FxNewspaperOffice> {
 
     public IPage<FxNewspaperOffice> findPage(QueryRequest request, FxNewspaperOffice model);
 
+    public boolean removeIdLogic(String [] ids);
+
 }

@@ -43,6 +43,7 @@ public class FxNewspaperOfficeController extends BaseController {
     @RequiresPermissions("newspaperOffice:add")
     public void addFxNewspaperOffice(@Valid FxNewspaperOffice model) throws FebsException {
         try {
+            model.setIsValid(1);
             this.fxNewspaperOfficeService.save(model);
         } catch (Exception e) {
             message = "新增报刊失败";
@@ -57,7 +58,7 @@ public class FxNewspaperOfficeController extends BaseController {
     public void deleteFxNewspaperOffices(@NotBlank(message = "{required}") @PathVariable String modelIds) throws FebsException {
         try {
             String[] ids = modelIds.split(StringPool.COMMA);
-            this.fxNewspaperOfficeService.removeById(ids);
+            this.fxNewspaperOfficeService.removeIdLogic(ids);
         } catch (Exception e) {
             message = "删除报刊失败";
             log.error(message, e);

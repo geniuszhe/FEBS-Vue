@@ -41,4 +41,15 @@ public class FxNewspaperOfficeServiceImpl extends ServiceImpl<FxNewspaperOfficeM
 
     }
 
+    @Override
+    public boolean removeIdLogic(String [] ids) {
+        for(String id : ids){
+            FxNewspaperOffice model = new FxNewspaperOffice();
+            model.setIsValid(0);
+            model.setId(Long.valueOf(id));
+            this.baseMapper.updateById(model);
+        }
+        return false;
+    }
+
 }
