@@ -61,6 +61,14 @@
         <template slot="icon" slot-scope="text, record">
          <a-icon :type="text" />
         </template>
+        <template slot="longtext" slot-scope="text, record">
+          <a-popover placement="topLeft">
+            <template slot="content">
+              <div>{{text}}</div>
+            </template>
+            <p style="width: 150px;margin-bottom: 0">{{text}}</p>
+          </a-popover>
+        </template>
         <template slot="operation" slot-scope="text, record">
           <a-icon v-hasPermission="'menu:update'" type="setting" theme="twoTone" twoToneColor="#4a9ff5" @click="edit(record)" title="修改"></a-icon>
           <a-badge v-hasNoPermission="'menu:update'" status="warning" text="无权限"></a-badge>
@@ -161,13 +169,19 @@ export default {
         onFilter: (value, record) => record.type.includes(value)
       }, {
         title: '地址',
-        dataIndex: 'path'
+        dataIndex: 'path',
+        scopedSlots: { customRender: 'longtext' },
+        width: 100
       }, {
         title: 'Vue组件',
-        dataIndex: 'component'
+        dataIndex: 'component',
+        scopedSlots: { customRender: 'longtext' },
+        width: 100
       }, {
         title: '权限',
-        dataIndex: 'permission'
+        dataIndex: 'permission',
+        scopedSlots: { customRender: 'longtext' },
+        width: 100
       }, {
         title: '排序',
         dataIndex: 'order'
